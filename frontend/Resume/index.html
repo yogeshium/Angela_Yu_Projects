@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume</title>
+    <style>
+        *{
+            font-family: "Times New Roman", Times, serif;
+            font-size: 12pt;
+        }
+
+        /* Head style */
+        .container{
+            margin-left: 25%;
+            margin-right: 25%;
+            margin-bottom: 100px;
+        }
+        .head{
+            display: grid;
+            grid-template-columns: 10% 45% 45%;
+            grid-template-rows: repeat(5,1fr);
+        }
+        .head-item1{
+            grid-column: span 1;
+            grid-row-start: 1;
+            grid-row-end: -1;
+            
+        }
+        .head-item1 > img{
+            width: 100%;
+            height: 100%;
+        }
+        .head-item2{
+            grid-column: span 1;
+            grid-row-start: 1;
+            grid-row-end: 3;
+            font-weight: bold;
+            font-size: 1.5rem;
+        }
+        .head-item3{
+            grid-area: 3 / 2 / 4 / 3;
+        }
+        .head-item4{
+            grid-area: 4 / 2 / 5 / 3;
+        }
+        .head-item5{
+            grid-area: 5 / 2 / -1 / 3;
+        }
+        .right{
+            text-align: right;
+            
+        }
+        .left{
+            padding-left: 5%;
+        }
+
+        /* General */
+        .icon{
+            width: 10px;
+            height: 10px;
+        }
+        a{
+            color: blue;
+            text-decoration: none;
+        }
+        .section > p{
+            margin-top: 2rem;
+            margin-bottom: 0;
+            font-size: 11pt;
+            font-weight: bold;
+        }
+        .bold{
+            font-size: 10pt;
+            font-weight: bold;
+        }
+        .normal{
+            font-size: 10pt;
+            font-weight: normal;
+        }
+        .italic
+        {
+            font-size: 9pt;
+            font-style: italic;
+        }
+        
+        
+        /* Education Section */
+        .sub-section{
+            display: flex;
+            justify-content: space-between;
+        }
+        .sub-section > span, .sub-section > li{
+            margin-top: 2px;
+            margin-bottom: 2px;
+        }
+        .sub-section > a{
+            font-size: 9pt;
+            font-style: italic;
+        }
+
+
+    </style>
+</head>
+<body>
+   
+    <div class="container">
+        <div class="head">
+            <div class="head-item1">
+                <img src="./assets/Mnit_logo_bw.png" alt="NITW LOGO">    
+            </div>
+            <div class="head-item2 left">Yogesh Kumar</div>
+            <div class="left head-item3">Roll No: 22MCF1R58</div>
+            <div class="left head-item4">Master of Computer Application (MCA) </div>
+            <div class="left head-item5">National Institute Of Technology, Warangal</div>
+            <div class="right head-item6">
+                <img src="./assets/phone.png" alt="" class="icon">
+                <span>+91-7672977301</span>
+            </div>
+            <div class="right head-item7">
+                <img src="./assets/email.png" alt="" class="icon">
+                <a href="" target="_blank">iamygskr@gmail.com</a>
+            </div>
+            <div class="right head-item8">
+                <img src="./assets/email.png" alt="" class="icon">
+                <a href="" target="_blank">yk22mcf1r58@student.nitw.ac.in</a>
+            </div>
+            <div class="right head-item9">
+                <img class="icon" src="./assets/github.png">
+                <a href="https://github.com/yogeshium" target="_blank">yogeshium</a>
+            </div>
+            <div class="right head-item10">
+                <img src="./assets/linkedin.png" alt="" class="icon">
+                <a href="https://www.linkedin.com/in/yogesh-kumar-8548821b1" target="_blank">yogesh-kumar</a>
+            </div>
+        </div>
+        <div class="section">
+            <p class="section-heading">Eduction</p>
+            <hr>
+            <div class="sub-section">
+                <li class="bold">National Institute of Technology, Warangal</li>
+                <span class="italic">Aug 2022 - Jun 2025</span>
+            </div>
+            <div class="sub-section">
+                <span class="italic">Master of Computer Application (MCA)</span>
+                <span class="normal">CGPA: 8.10</span>
+            </div>
+            <div class="sub-section">
+                <li class="bold">Patna Science College (Patna University), Patna , Bihar</li>
+                <span class="italic">Aug 2018 - Jun 2021</span>
+            </div>
+            <div class="sub-section">
+                <span class="italic">Bachelor of Computer Application (BCA)</span>
+                <span class="normal">Percentage: 77.83</span>
+            </div>
+        </div>
+        <div class="section">
+            <p class="section-heading">Personal Projects</p>
+            <hr>
+            <div class="sub-section">
+                <li class="bold">Global Chat Application</li>
+                <span class="italic">May 2023</span>
+            </div>
+            <div class="sub-section">
+                <span class="italic">This is a Chat Application</span>
+                <a href="https://github.com/yogeshium/Global-Chat-Application" target="_blank">Github Repo</a>
+            </div>
+            <div>
+                <span class="normal">- Tools & technologies used: HTML, CSS, Javascript, PHP, Mysql .</span>
+            </div>
+            <div>
+                <li class="normal">Implemented using AJAX.</li>
+            </div>
+        </div>
+        <div class="section">
+            <p class="section-heading">Technical Skills And Interests</p>
+            <hr>
+            <div>
+                <span class="bold">Languages: </span>
+                <span class="normal"> C++, C, SQL, HTML, CSS, JavaScript.</span>
+            </div>
+            <div>
+                <span class="bold">Developer Tools: </span>
+                <span class="normal"> Git, GitHub.</span>
+            </div>
+            <div>
+                <span class="bold">Databases: </span>
+                <span class="normal"> MySQL.</span>
+            </div>
+            <div>
+                <span class="bold">Soft Skills: </span>
+                <span class="normal"> Communication, Critical Thinking.</span>
+            </div>
+            <div>
+                <span class="bold">Coursework: </span>
+                <span class="normal"> Data Structure and Algorithm, Database, Web Technologies.</span>
+            </div>
+            <div>
+                <span class="bold">Areas of Interest: </span>
+                <span class="normal"> Full-Stack Development, Cyber Security.</span>
+            </div>
+        </div>
+        <div class="section">
+            <p class="section-heading">Achievements</p>
+            <hr>
+            <div>
+                <li class="normal">Secured All India Rank 230 in NIMCET 2022 Exam.</li>
+            </div>
+        </div>
+        <div class="section">
+            <p class="section-heading">Coding Platform Profiles</p>
+            <hr>
+            <div>
+                <a href="https://leetcode.com/yogeshium/" target="_blank">LeetCode(yogeshium): </a>
+                <span> Did 320+ Questions DSA based.</span>
+            </div>
+            <div>
+                <a href="https://auth.geeksforgeeks.org/user/yogeshium/" target="_blank">GFG(yogeshium): </a>
+                <span> Did 250+ Questions DSA based.</span>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

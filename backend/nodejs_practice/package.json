@@ -1,0 +1,17 @@
+{
+  "name": "nodejs_practice",
+  "version": "1.0.0",
+  "description": "Practicing nodejs",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Yogesh Kumar",
+  "license": "ISC",
+  "dependencies": {
+    "@inquirer/input": "^1.2.13",
+    "inquirer": "^9.2.11",
+    "qr-image": "^3.2.0"
+  }
+}
