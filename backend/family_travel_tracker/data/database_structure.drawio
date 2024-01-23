@@ -1,0 +1,36 @@
+<mxfile host="app.diagrams.net" modified="2024-01-22T18:05:16.635Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36" etag="G5ZLC32UUmvS_fn_1Vv9" version="22.1.21" type="device">
+  <diagram name="Page-1" id="ztivlFzPV0M3QNBd-Z9F">
+    <mxGraphModel dx="1050" dy="522" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="Bdmp2VnSPF-BJXJJvAa2-1" value="&lt;p style=&quot;margin: 6px 0px 0px; text-align: center; font-size: 14px;&quot;&gt;&lt;b style=&quot;font-size: 14px;&quot;&gt;country&lt;/b&gt;&lt;/p&gt;&lt;hr style=&quot;font-size: 14px;&quot;&gt;&lt;p style=&quot;margin: 0px 0px 0px 8px; font-size: 14px;&quot;&gt;+ id - primary key&lt;br style=&quot;font-size: 14px;&quot;&gt;+ country_code&amp;nbsp;&lt;/p&gt;&lt;p style=&quot;margin: 0px 0px 0px 8px; font-size: 14px;&quot;&gt;+ country_name&amp;nbsp;&lt;/p&gt;" style="align=left;overflow=fill;html=1;dropTarget=0;whiteSpace=wrap;fontSize=14;" parent="1" vertex="1">
+          <mxGeometry x="480" y="70" width="170" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="Bdmp2VnSPF-BJXJJvAa2-4" value="&lt;p style=&quot;margin: 6px 0px 0px; text-align: center; font-size: 14px;&quot;&gt;&lt;b&gt;person&lt;/b&gt;&lt;/p&gt;&lt;hr style=&quot;font-size: 14px;&quot;&gt;&lt;p style=&quot;margin: 0px 0px 0px 8px; font-size: 14px;&quot;&gt;+ id&lt;br style=&quot;font-size: 14px;&quot;&gt;+ name&lt;/p&gt;" style="align=left;overflow=fill;html=1;dropTarget=0;whiteSpace=wrap;fontSize=14;" parent="1" vertex="1">
+          <mxGeometry x="480" y="320" width="180" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="Bdmp2VnSPF-BJXJJvAa2-6" value="&lt;p style=&quot;margin: 6px 0px 0px; text-align: center; font-size: 14px;&quot;&gt;&lt;b style=&quot;font-size: 14px;&quot;&gt;visited&lt;/b&gt;&lt;/p&gt;&lt;hr style=&quot;font-size: 14px;&quot;&gt;&lt;p style=&quot;margin: 0px 0px 0px 8px; font-size: 14px;&quot;&gt;+ country_id&lt;/p&gt;&lt;p style=&quot;margin: 0px 0px 0px 8px; font-size: 14px;&quot;&gt;&lt;br style=&quot;font-size: 14px;&quot;&gt;+ family_member_id&lt;/p&gt;" style="align=left;overflow=fill;html=1;dropTarget=0;whiteSpace=wrap;fontSize=14;" parent="1" vertex="1">
+          <mxGeometry x="120" y="200" width="180" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="Bdmp2VnSPF-BJXJJvAa2-7" value="" style="shape=component;jettyWidth=8;jettyHeight=4;" parent="Bdmp2VnSPF-BJXJJvAa2-6" vertex="1">
+          <mxGeometry x="1" width="20" height="20" relative="1" as="geometry">
+            <mxPoint x="-24" y="4" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Bdmp2VnSPF-BJXJJvAa2-9" value="" style="edgeStyle=entityRelationEdgeStyle;fontSize=12;html=1;endArrow=ERoneToMany;rounded=0;entryX=-0.021;entryY=0.413;entryDx=0;entryDy=0;entryPerimeter=0;exitX=0.998;exitY=0.397;exitDx=0;exitDy=0;exitPerimeter=0;" parent="1" source="Bdmp2VnSPF-BJXJJvAa2-6" target="Bdmp2VnSPF-BJXJJvAa2-1" edge="1">
+          <mxGeometry width="100" height="100" relative="1" as="geometry">
+            <mxPoint x="325" y="240" as="sourcePoint" />
+            <mxPoint x="425" y="140" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Bdmp2VnSPF-BJXJJvAa2-10" value="" style="edgeStyle=entityRelationEdgeStyle;fontSize=12;html=1;endArrow=ERoneToMany;rounded=0;entryX=-0.002;entryY=0.37;entryDx=0;entryDy=0;entryPerimeter=0;exitX=1.016;exitY=0.643;exitDx=0;exitDy=0;exitPerimeter=0;" parent="1" source="Bdmp2VnSPF-BJXJJvAa2-6" target="Bdmp2VnSPF-BJXJJvAa2-4" edge="1">
+          <mxGeometry width="100" height="100" relative="1" as="geometry">
+            <mxPoint x="370" y="320" as="sourcePoint" />
+            <mxPoint x="470" y="220" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
