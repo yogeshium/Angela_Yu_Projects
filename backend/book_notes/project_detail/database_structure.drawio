@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2024-01-29T15:40:16.781Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36" etag="OvnhSiXBkuJd-iJIp2x7" version="23.0.2" type="device">
+<mxfile host="app.diagrams.net" modified="2024-02-01T12:31:38.970Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36" etag="vcqXdY3KMFEpAh3uRkep" version="23.0.2" type="device">
   <diagram name="Page-1" id="cdwKG416mQBGwe3FAL6P">
     <mxGraphModel dx="1050" dy="522" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
@@ -7,13 +7,13 @@
         <mxCell id="cPpp3dZU9xvRmmlzPsaU-1" value="book" style="swimlane;childLayout=stackLayout;horizontal=1;startSize=50;horizontalStack=0;rounded=1;fontSize=14;fontStyle=0;strokeWidth=2;resizeParent=0;resizeLast=1;shadow=0;dashed=0;align=center;arcSize=4;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="450" y="290" width="160" height="120" as="geometry" />
         </mxCell>
-        <mxCell id="cPpp3dZU9xvRmmlzPsaU-2" value="+ id&lt;br&gt;+ name&lt;br&gt;+ isbn&amp;nbsp;" style="align=left;strokeColor=none;fillColor=none;spacingLeft=4;fontSize=12;verticalAlign=top;resizable=0;rotatable=0;part=1;html=1;" parent="cPpp3dZU9xvRmmlzPsaU-1" vertex="1">
+        <mxCell id="cPpp3dZU9xvRmmlzPsaU-2" value="+ book_id&lt;br&gt;+ book_name&lt;br&gt;+book_author&lt;br&gt;+ isbn&amp;nbsp;" style="align=left;strokeColor=none;fillColor=none;spacingLeft=4;fontSize=12;verticalAlign=top;resizable=0;rotatable=0;part=1;html=1;" parent="cPpp3dZU9xvRmmlzPsaU-1" vertex="1">
           <mxGeometry y="50" width="160" height="70" as="geometry" />
         </mxCell>
         <mxCell id="cPpp3dZU9xvRmmlzPsaU-3" value="reader" style="swimlane;childLayout=stackLayout;horizontal=1;startSize=50;horizontalStack=0;rounded=1;fontSize=14;fontStyle=0;strokeWidth=2;resizeParent=0;resizeLast=1;shadow=0;dashed=0;align=center;arcSize=4;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="450" y="70" width="160" height="120" as="geometry" />
         </mxCell>
-        <mxCell id="cPpp3dZU9xvRmmlzPsaU-4" value="+ id&lt;br&gt;+ name" style="align=left;strokeColor=none;fillColor=none;spacingLeft=4;fontSize=12;verticalAlign=top;resizable=0;rotatable=0;part=1;html=1;" parent="cPpp3dZU9xvRmmlzPsaU-3" vertex="1">
+        <mxCell id="cPpp3dZU9xvRmmlzPsaU-4" value="+ reader_id&lt;br&gt;+ reader_name" style="align=left;strokeColor=none;fillColor=none;spacingLeft=4;fontSize=12;verticalAlign=top;resizable=0;rotatable=0;part=1;html=1;" parent="cPpp3dZU9xvRmmlzPsaU-3" vertex="1">
           <mxGeometry y="50" width="160" height="70" as="geometry" />
         </mxCell>
         <mxCell id="cPpp3dZU9xvRmmlzPsaU-5" value="reader_book" style="swimlane;childLayout=stackLayout;horizontal=1;startSize=50;horizontalStack=0;rounded=1;fontSize=14;fontStyle=0;strokeWidth=2;resizeParent=0;resizeLast=1;shadow=0;dashed=0;align=center;arcSize=4;whiteSpace=wrap;html=1;" parent="1" vertex="1">
@@ -21,7 +21,7 @@
             <mxRectangle x="150" y="170" width="120" height="50" as="alternateBounds" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="cPpp3dZU9xvRmmlzPsaU-6" value="+ reader_id&lt;br&gt;+ book_id&lt;br&gt;+ rating&lt;br&gt;+ summary&lt;br&gt;+ note&lt;br&gt;+ date_read" style="align=left;strokeColor=none;fillColor=none;spacingLeft=4;fontSize=12;verticalAlign=top;resizable=0;rotatable=0;part=1;html=1;" parent="cPpp3dZU9xvRmmlzPsaU-5" vertex="1">
+        <mxCell id="cPpp3dZU9xvRmmlzPsaU-6" value="+ reader_id&lt;br&gt;+ book_id&lt;br&gt;+ rating&lt;br&gt;+date_read&lt;br&gt;+ summary&lt;br&gt;+ notes" style="align=left;strokeColor=none;fillColor=none;spacingLeft=4;fontSize=12;verticalAlign=top;resizable=0;rotatable=0;part=1;html=1;" parent="cPpp3dZU9xvRmmlzPsaU-5" vertex="1">
           <mxGeometry y="50" width="160" height="130" as="geometry" />
         </mxCell>
         <mxCell id="cPpp3dZU9xvRmmlzPsaU-11" value="" style="edgeStyle=entityRelationEdgeStyle;fontSize=12;html=1;endArrow=ERoneToMany;rounded=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" target="cPpp3dZU9xvRmmlzPsaU-3" edge="1">
