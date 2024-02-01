@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/styles/style.css">
+    <title><%=locals.data?" Edit " + data.book_name:"Add New Book Notes"%> | </title>
+</head>
+<body>
+    <div class="container">
+        <div class="main-container">
+            <div class="heading">
+                <h1><%=locals.toEdit? 'Edit Book Notes': 'Add New Book Notes'%></h1>
+                <a href=<%=locals.toEdit? `/book/${data.book_id}`: '/book'%>><button class="edit">Cancel</button></a>
+            </div>
+            
+            <p class="invalid"><%=locals.invalid?"Book Already Exists":""%></p>
+           <form action=<%=locals.toEdit?"/edit":"/new"%> method="POST" id="new-edit">
+                <div class="take-input">
+                    <label for="book_name">Name Of the Book: </label>
+                    <input type="text" name="book_name" id="book_name" value="<%=locals.toEdit? data.book_name: ''%>" <%-locals.toEdit? 'disabled': ''%>>
+                </div>
+                <div class="take-input">
+                    <label for="book_author">Author: </label>
+                    <input type="text" name="book_author" id="book_author" value="<%=locals.toEdit? data.author: ''%>">
+                </div>
+                <div class="take-input">
+                    <label for="isbn">ISBN: </label>
+                    <input type="text" name="isbn" id="isbn" value="<%=locals.toEdit? data.isbn:''%>">
+                </div>
+                <div class="take-input">
+                    <label for="rating">Rating: </label>
+                    <input type="number" name="rating" id="rating" min="0" max="9.9" step=".1" value="<%=locals.toEdit? data.rating:''%>">
+                </div>
+                <div class="take-input">
+                    <label for="date_read">Date Read: </label>
+                    <input type="date" name="date_read" id="date_read" value="<%=locals.toEdit? data.date_read:''%>">
+                </div>
+                <div class="take-input">
+                    <label for="summary">Summary: </label>
+                    <textarea name="summary" id="summary" cols="30" rows="10"><%=locals.toEdit? data.summary:''%></textarea>
+                </div>
+                <div class="take-input">
+                    <label for="notes">Notes: </label>
+                    <textarea name="notes" id="notes" cols="30" rows="20"><%=locals.toEdit? data.book_notes:''%></textarea>
+                </div>
+                <% if(locals.toEdit){%>
+                    <input type="text" name= "book_id" value=<%=data.book_id%> hidden>
+                <%}%>
+                <input type="text" name= "reader_id" value=<%=data.reader_id%> hidden>
+                <input type="submit">
+           </form>
+        </div>
+    </div>
+
+    <script src="/scripts/book.js" type="application/javascript"></script>
+</body>
+</html> 

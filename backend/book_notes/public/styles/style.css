@@ -1,0 +1,94 @@
+body{
+    margin: 0;
+    background-color: black;
+}
+
+.container{
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+}
+.main-container{
+    grid-column-start: 2;
+    grid-column-end: 3;  
+}
+.book-cover-pic{
+    display:inline;
+    float: left;
+    padding-right: 5%;
+}
+.abook{
+    margin-bottom: 50px;
+}
+.take-input{
+    display:flex;
+    gap:5%;   
+    margin-top: 1vh;
+    margin-bottom: 1vh;
+}
+.take-input > label{
+    flex: 1;
+    font-size: 1.1rem;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+.take-input > input{
+    flex: 4;
+    background-color: #666666;
+    color: #ccc;
+    padding: 5px;
+}
+.take-input > textarea{
+    flex: 4;
+    padding: 5px;
+    color: #ccc;
+    background-color: #666666;
+}
+#new-edit > input[type=submit]{
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: green;
+    color: white;
+    font-size: 1.2rem;
+    cursor: pointer;
+}
+.heading{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.edit{
+    height: 60%;
+    outline: none;
+    cursor: pointer;
+    border-radius: 3px;
+    padding: 10px 10px;
+    border-radius: 4px;
+    color: #fff;
+    background: #6200ee;
+    text-decoration: none;
+    min-width: 50px;
+    border: none;
+    text-align: center;
+}
+.invalid{
+    color: red;
+}
+
+/* Colors of texts */
+h1, h2, h3{
+    color: #008800;
+}
+p{
+    color: #ccc;
+}
+.date_rating{
+    color: #666666;
+}
+a{
+    color: #88f;
+    text-decoration: none;
+}
+label{
+    color: #ccc;
+}

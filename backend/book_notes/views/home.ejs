@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/styles/style.css">
+    <title>Book Notes | <%=user.reader_name%></title>
+</head>
+<body>
+    <div class="container">
+        <div class="main-container">
+            <a href="/book"><h1><%=user.reader_name%></h1></a>
+            <div class="heading">
+                <h2>BOOKS I'VE READ</h2>
+                <a href="/new"><button class="edit">Add New Book</button></a>
+            </div>
+            
+            <p>
+                Tiny summary but detailed notes for each. Use the ISBN number to find it from your local library or anywhere else. 
+                This page will constantly update as I read more, so bookmark it if you want to check back in a few months.
+            </p>
+            <hr>
+            <div>
+                <form action="/book" method="get">
+                    <label for="filter-by">Filter By: </label>
+                    <select name="filter-by" id="filter-by">
+                        <option value="" <%=locals.filterBy===""?"selected":""%>>No Filter</option>
+                        <option value="book_name" <%=locals.filterBy==="title"?"selected":""%>>Title</option>
+                        <option value="date_read" <%=locals.filterBy==="newest"?"selected":""%>>Date Readed</option>
+                        <option value="rating desc" <%=locals.filterBy==="rating"?"selected":""%>>Rating</option>
+                    </select>
+                    <input type="submit" hidden>
+                </form>
+            </div>
+            <% for(let i=0;i<data.length;i++){%>
+                <div class="abook">
+                    <a href="/book/<%=data[i].book_id%>" class="book-cover-pic"><img src=<%=data[i].imgLink%> alt=""></a>
+                    <h3><a href="/book/<%=data[i].book_id%>" class="book-title"><%=data[i].book_name%> - By <%=data[i].author%></a></h3>
+                    <p class="date_rating">Date read: <%=data[i].date_read%>. How strongly I recommend it: <%=data[i].rating%>/10</p>
+                    <p class="summary">
+                        <%=data[i].summary%>
+                    </p>
+                    <a href="/book/<%=data[i].book_id%>" class="notes-link">Read my notes</a>
+                </div>
+            <%}%>
+        </div>
+    </div>
+
+    <script 
+        src="https://code.jquery.com/jquery-3.7.1.slim.min.js" 
+        integrity="sha256-kmHvs0B+OpCW5GVHUNjv9rOmY0IvSIRcf7zGUDTDQM8="
+        crossorigin="anonymous">
+    </script>
+    <script src="/scripts/home.js" type="application/javascript"></script>
+</body>
+</html>

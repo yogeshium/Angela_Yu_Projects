@@ -1,0 +1,21 @@
+{
+  "dependencies": {
+    "axios": "^1.6.7",
+    "body-parser": "^1.20.2",
+    "ejs": "^3.1.9",
+    "express": "^4.18.2",
+    "nodemon": "^3.0.3",
+    "pg": "^8.11.3",
+    "uuid": "^9.0.1"
+  },
+  "scripts": {
+    "start": "node index.js"
+  },
+  "type": "module",
+  "name": "book_notes",
+  "version": "1.0.0",
+  "description": "Tech Stack:- HTML CSS Javascript (jQuery) Nodejs express ejs postgreSQL",
+  "main": "index.js",
+  "author": "Yogesh Kumar",
+  "license": "ISC"
+}

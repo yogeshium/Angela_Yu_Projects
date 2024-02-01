@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/styles/style.css">
+    <title><%=data.book_name%> - By <%=data.author%> | <%=data.reader_name%></title>
+</head>
+<body>
+    <div class="container">
+        <div class="main-container">
+            <div class="heading">
+                <a href="/book"><h1><%=data.reader_name%></h1></a>
+                <a href="/edit/<%=data.book_id%>"><button class="edit">Edit</button></a>
+            </div>
+            
+            <a href=<%=data.wholeImageLink%>><img src=<%=data.imgLink%> alt="" href="#" class="book-cover-pic"></a>
+            <h2 class="book-title"><%=data.book_name%> - By <%=data.author%></h2>
+            <p class="date_rating">ISBN: <%=data.isbn%></p>
+            <p class="date_rating">Date read: <%=data.date_read%></p>
+            <p class="date_rating">How strongly I recommend it: <%=data.rating%>/10</p>
+            <p class="summary"><%=data.summary%></p>
+            <h3 >My Notes</h3>
+            <p class="notes"><%-data.book_notes%></p>
+        </div>
+    </div>
+
+    <script src="./scripts/book.js" type="application/javascript"></script>
+</body>
+</html> 
