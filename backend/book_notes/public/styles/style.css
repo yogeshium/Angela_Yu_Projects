@@ -76,7 +76,7 @@ body{
 }
 
 /* Colors of texts */
-h1, h2, h3{
+h1, h2, h3, .user_name{
     color: #008800;
 }
 p{
@@ -88,6 +88,19 @@ p{
 a{
     color: #88f;
     text-decoration: none;
+}
+.user_name_heading{
+    margin-top: 1vh;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 2.5rem;
+    font-weight: 800;
+    padding: 5px;
+}
+.logout{
+    color: #ccc;
+    font-size: 1rem;
 }
 label{
     color: #ccc;

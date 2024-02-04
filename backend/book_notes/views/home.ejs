@@ -9,7 +9,10 @@
 <body>
     <div class="container">
         <div class="main-container">
-            <a href="/book"><h1><%=user.reader_name%></h1></a>
+            <div class="user_name_heading">
+                <a href="/book" class="user_name"><%=user.reader_name.toUpperCase()%></a>
+                <a href="/logout" class="logout">LOG OUT</a>
+            </div>
             <div class="heading">
                 <h2>BOOKS I'VE READ</h2>
                 <a href="/new"><button class="edit">Add New Book</button></a>

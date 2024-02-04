@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <style>
+        body{
+            margin: 0;
+            width: 100%;
+            color: #ccc;
+        }
+        .container{
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: black;;
+        }
+        form{
+            width: 30%;
+            height: 50vh;
+        }
+        .form_input{
+            width: 100%;
+            
+            margin-top: 1vh;
+            margin-bottom: 1vh;
+            display: flex;
+            justify-content: flex-start;
+        }
+        label{
+            width: 30%;
+            padding: 5px;
+        }
+        input{
+            width: 70%;
+            padding: 5px;
+            background-color: #666666;
+            color: #ccc;
+        }
+        input[type=submit]{
+            width: 100%;
+            background-color: #008800;
+            cursor: pointer;
+        }
+        h1{
+            color: #008800;
+            text-align: center;
+        }
+        .register_forgot_password{
+            display: flex;
+            width: 100%;
+            justify-content: space-between;
+        }
+        a{
+            color: #88f;
+            text-decoration: none;
+        }
+        #form_fp{
+            display: flex;
+            justify-content: end;
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+        #form_register{
+            display: flex;
+            justify-content: center;
+            margin-top: 10px;
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+        }
+        #form_warning{
+            background-color: #ffdce0;
+            padding: 1px 1px 1px 5px;
+            border: 1px solid #8e3e54;
+            border-radius: 5px;
+        }
+        #form_warning > p{
+            color: #9c3a54;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <form action="/login" method="POST">
+            <% if(locals.warning){%>
+                <div id="form_warning">
+                    <p><%=warning%></p>
+                </div>
+            <%}%>
+            <a href="/login"><h1>LOGIN</h1></a>
+            <div class="form_input">
+                <label for="email"> Email: </label>
+                <input type="email" id="email" name="email">
+            </div>
+            <div class="form_input">
+                <label for="password">Password: </label>
+                <input type="password" id="password" name="password">
+            </div>
+            <div id="form_fp">
+                <a href="#">Forgot Password?</a>
+            </div>
+            <input type="submit" value="Login">
+            <div id="form_register">
+                <a href="/register">Not Registered? Sign Up</a>
+            </div>
+            
+        </form>
+    </div>
+</body>
+</html>

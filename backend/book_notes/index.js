@@ -2,78 +2,132 @@ import express from "express";
 import bodyParser from "body-parser";
 import pg from "pg";
 import { v4 as uuidv4 } from 'uuid';
-import axios from "axios";
+import bcrypt from "bcrypt";
+import passport from "passport";
+import {Strategy} from "passport-local";
+import session from "express-session";
+import env from "dotenv";
 
+
+env.config();
+const app = express();
+const port = 3000;
+const apiURL = process.env.APIURL;
+const saltRounds=10;
+
+//Database Connect
 const db=new pg.Client({
-    user: "postgres",
-    host: "localhost",
-    database: "book_notes",
-    password: "yogesh password",
-    port: 5432,
+    user: process.env.PG_USER,
+    host: process.env.PG_HOST,
+    database: process.env.PG_DATABASE,
+    password: process.env.PG_PASSWORD,
+    port: process.env.PG_PORT
 });
 db.connect();
 
-var userId = "7ac47af1-c7fd-47a5-8cdf-2e1f9cbf51d9";
-
-const app = express();
-const port = 3000;
-const apiURL = "https://covers.openlibrary.org/b/isbn/";
 
 app.use(express.static("public"));
-app.use(bodyParser.urlencoded({extended:true}));
+app.use(bodyParser.urlencoded({extended:false}));
+app.use(session({
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: true,
+    cookie:{
+        maxAge: 1000*60*60,
+    }
+}));
+app.use(passport.initialize());
+app.use(passport.session());
+
+
+
+app.get("/",async(req,res)=>{
+    if(req.isAuthenticated()){
+        res.redirect("/book");
+    }
+    else{
+        res.redirect("/login");
+    }
+});
 
 
 //Route - Get all books for that user
 app.get("/book",async (req,res)=>{
-    let filterBy="";
-   
-    if(!isEmpty(req.query))
-    {
-        filterBy=req.query['filter-by'];
+    
+    if(req.isAuthenticated()){
+        let userId=req.user.reader_id;
+        let filterBy="";
+        if(!isEmpty(req.query))
+        {
+            filterBy=req.query['filter-by'];
+        }
+        let user = await getUser(userId);
+        let data= await getAllBooksOfUser(userId,filterBy);
+        for(let i=0;i<data.length;i++)
+        {
+            data[i].date_read=formatDate(data[i].date_read);
+            data[i].imgLink= `${apiURL}${data[i].isbn}-S.jpg`;
+        }
+        res.render("home.ejs",{data: data,user:user,filterBy:filterBy});
     }
-    let user = await getUser(userId);
-    let data= await getAllBooksOfUser(userId,filterBy);
-    for(let i=0;i<data.length;i++)
-    {
-        data[i].date_read=formatDate(data[i].date_read);
-        data[i].imgLink= `${apiURL}${data[i].isbn}-S.jpg`;
+    else{
+        res.redirect("/login");
     }
-    res.render("home.ejs",{data: data,user:user,filterBy:filterBy})
+    
 });
 
 //Route - See a particular book
 app.get("/book/:id",async (req,res)=>{
-    let bookId = req.params.id;
-    let data = await getBookDetail(userId,bookId);
-    data.date_read=formatDate(data.date_read);
-    data.imgLink=`${apiURL}${data.isbn}-M.jpg`
-    data.wholeImageLink=`${apiURL}${data.isbn}-L.jpg`
-    res.render("book.ejs",{data: data});
+    if(req.isAuthenticated()){
+        let userId = req.user.reader_id;
+        let bookId = req.params.id;
+        let data = await getBookDetail(userId,bookId);
+        data.date_read=formatDate(data.date_read);
+        data.imgLink=`${apiURL}${data.isbn}-M.jpg`
+        data.wholeImageLink=`${apiURL}${data.isbn}-L.jpg`
+        res.render("book.ejs",{data: data});
+    }
+    else{
+        res.redirect("/login");
+    }
 });
 
 //Routes - Editing Book
 app.get("/edit/:id",async(req,res)=>{
-    let bookId = req.params.id; 
-    let data = await getBookDetail(userId,bookId); 
-    data.date_read= formatDate(data.date_read);
-    res.render("add_edit.ejs",{data: data,toEdit:true});
+    if(req.isAuthenticated()){
+        let userId = req.user.reader_id;
+        let bookId = req.params.id; 
+        let data = await getBookDetail(userId,bookId); 
+        data.date_read= formatDate(data.date_read);
+        res.render("add_edit.ejs",{data: data,toEdit:true});
+    }
+    else{
+        res.redirect("/login");
+    }
 });
 
 app.post("/edit", async(req,res)=>{
     let data = req.body;
     data.book_author = await capitalize(data.book_author);
-    // console.log(data);
     await updateData(data);
     res.redirect(`/book/${data.book_id}`);
 });
 
 
 //Route - New Book
-app.get("/new",(req,res)=>{
-    let data = {
-        reader_id: userId,
-    }  ;
-    res.render("add_edit.ejs",{data:data});
+app.get("/new",async (req,res)=>{
+    if(req.isAuthenticated()){
+        let userId=req.user.reader_id;
+        const result = await getUser(userId);
+        let data = {
+            reader_id: userId,
+            reader_name: result.reader_name,
+        }  ;
+        res.render("add_edit.ejs",{data:data});
+    }
+    else{
+        res.redirect("/login");
+    }
 });
 
 app.post("/new",async(req,res)=>{
@@ -81,8 +135,6 @@ app.post("/new",async(req,res)=>{
     data.book_id = await makeBookId(data.book_name+" By "+data.book_author);
     data.book_name=await capitalize(data.book_name);
     data.book_author = await capitalize(data.book_author);
-    // console.log(data.book_id);
-    //check if this book_id already exist in reader_book table
     let result = await checkForBookIdExistInreader_book(data.book_id,data.reader_id);
     if(result){
         res.render("add_edit.ejs",{invalid:true,data:{reader_id:data.reader_id}});
@@ -92,9 +144,6 @@ app.post("/new",async(req,res)=>{
         res.redirect("/book");
     }
 });
-
-
-
 
 //Get All books for that user
 async function getAllBooksOfUser(userId,filterBy)
@@ -214,6 +263,148 @@ function isEmpty(obj) {
     return true;
   }
 
+
+
+//Route - logout
+app.get("/logout", (req, res) => {
+req.logout(function (err) {
+    if (err) {
+    return next(err);
+    }
+    res.redirect("/");
+});
+});
+
+
+//Route - Register
+app.get("/register",(req,res)=>{
+    if(req.isAuthenticated()){
+        req.logout();
+    }
+    res.render("register.ejs");
+});
+app.post("/register",async (req,res)=>{
+    const readerName= req.body.name;
+    const readerEmail = req.body.email;
+    const readerPassword= req.body.password;
+
+    try{
+        const checkExistence = await db.query("SELECT * FROM reader WHERE email=$1;",[readerEmail]);
+        if(checkExistence.rows.length>0)
+        {
+            res.render("register.ejs",{warning:"This Email Already Exists"});
+        }
+        else{
+            bcrypt.hash(readerPassword,saltRounds,async (err,hash)=>{
+                if(err){
+                    console.log("Error while doing hashing : ",err);
+                }
+                else{
+                    const readerId= uuidv4();
+                    const result = await db.query("INSERT INTO reader VALUES($1,$2,$3,$4) RETURNING *;",
+                    [readerId,readerName,readerEmail,hash]);
+                    const reader = result.rows[0];
+                    req.login(reader,(e)=>{
+                        if(e){
+                            console.log("Error on login _ register: ",e);                        }
+                        else{
+                            console.log("Successfully registered and loged In");
+                            res.redirect("/book");
+                        }
+                        
+                    });
+                }
+            });
+        }
+    }
+    catch(err){
+        console.log("Problem arises while quering : ",err);
+    }
+});
+
+
+//Route - Login
+app.get("/login",(req,res)=>{
+    if(req.isAuthenticated())
+        res.redirect("/book");
+    else
+    {
+        if(req.session.messages)
+        {
+            const msg= req.session.messages[0];
+            delete req.session.messages;
+            res.render("login.ejs",{warning: msg});
+        }
+        else{
+            res.render("login.ejs");
+        }
+    }
+       
+});
+
+app.post("/login",passport.authenticate("local",{
+    successRedirect:"/book",
+    failureRedirect: "/login",
+    failureMessage: true,
+})
+);
+
+
+passport.use("local",new Strategy(
+        {
+            usernameField: 'email', 
+            passReqToCallback: true
+        },
+        async function verify(req,email,password,cb){
+        try{
+            const result = await db.query("SELECT * FROM reader where email=$1",[email]);
+            if(result.rows.length>0){
+                const reader=result.rows[0];
+                const storedHashedPassword=reader.password;
+                
+                bcrypt.compare(password,storedHashedPassword,(err,valid)=>{
+                    if(err){
+                        console.log("Error occured while comparing: ",err);
+                        return cb(err);
+                    }
+                    else{
+                        if(valid){
+                            return cb(null,reader);
+                        }
+                        else{
+                            req.session.messages=[];
+                            return cb(null,false,{
+                                message: "Password Incorret",
+                            });
+                        }
+                    }
+                });
+            }
+            else{
+                req.session.messages=[];
+                return cb(null,false,{
+                    message: "Email Does not exist",
+                });
+            }
+        }
+        catch(err)
+        {
+            console.log("Error in performing query: ",err);
+        }
+    }
+));
+
+passport.serializeUser((user, cb) => {
+    cb(null, user);
+  });
+  
+  passport.deserializeUser((user, cb) => {
+    cb(null, user);
+  });
+
+
+
+
 app.listen(port,()=>{
-    console.log(`Listening to ${port}`);``
+    console.log(`Listening to ${port}`);
 });

@@ -9,9 +9,9 @@
 <body>
     <div class="container">
         <div class="main-container">
-            <div class="heading">
-                <a href="/book"><h1><%=data.reader_name%></h1></a>
-                <a href="/edit/<%=data.book_id%>"><button class="edit">Edit</button></a>
+            <div class="user_name_heading">
+                <a href="/book" class="user_name"><%=data.reader_name.toUpperCase()%></a>
+                <a href="/logout" class="logout">LOG OUT</a>
             </div>
             
             <a href=<%=data.wholeImageLink%>><img src=<%=data.imgLink%> alt="" href="#" class="book-cover-pic"></a>
